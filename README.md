@@ -9,5 +9,5 @@ To use in a script, one needs to set $PSLogFilePath to a path on disk and option
 Then call `. .\PATH\TO\PSLog.ps1` and either use Log-Info, Log-Warning or Log-Error with a message and optionally other properties in a hash map.
 
 e.g.
-Log-Info "Processed thing" @{Duration=100; Size=20; ThingName="Some Thing"}
+`Log-Info "Processed thing" @{Duration=100; Size=20; ThingName="Some Thing"}`
 
