@@ -50,7 +50,8 @@ function _WriteToLogFile($logJson){
         _ArchiveLogFile
     }
 
-    Add-Content -Path $PSLogFilePath -Value $logJson
+    # Add-Content sometimes complains about stream not being readable - http://stackoverflow.com/questions/27370389/add-content-produces-stream-not-readable
+    [System.IO.File]::AppendAllText($PSLogFilePath, $logJson)
 }
 
 function Log-Info(){
