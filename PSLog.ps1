@@ -13,12 +13,12 @@
         Message=$logMessage;
     }
 
-    if(-not [string]::IsNullOrEmpty($PSLogName)){
-        $jsonObj["logname"] = $PSLogName
-    }
-
     foreach($key in $logProps.Keys){
         $jsonObj[$key] = $logProps[$key]
+    }
+	
+    if(-not [string]::IsNullOrEmpty($PSLogName)){
+        $jsonObj["logname"] = $PSLogName
     }
 
     $jsonObj["host"] = [Environment]::MachineName
@@ -51,7 +51,7 @@ function _WriteToLogFile($logJson){
     }
 
     # Add-Content sometimes complains about stream not being readable - http://stackoverflow.com/questions/27370389/add-content-produces-stream-not-readable
-    [System.IO.File]::AppendAllText($PSLogFilePath, $logJson)
+    [System.IO.File]::AppendAllText($PSLogFilePath, $logJson + [Environment]::NewLine)
 }
 
 function Log-Info(){
